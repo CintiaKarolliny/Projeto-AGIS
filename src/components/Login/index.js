@@ -3,16 +3,14 @@ import {
   View,
   Text,
   TextInput,
-  Button,
-  Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { styles } from './styles';
 
 const Login = () => {
-
-const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,8 +33,7 @@ const navigation = useNavigation();
         const dados = await response.json();
         console.log('Login bem-sucedido', JSON.stringify(dados));
 
-         navigation.navigate('menu', { screen: 'Sobre' });
-        
+        navigation.navigate('Principal');
       } else {
         const errorData = await response.json();
         setError(`Erro ao fazer login: ${errorData.erro}`);
@@ -47,61 +44,31 @@ const navigation = useNavigation();
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.avatar}
-        source={{ uri: 'https://reqres.in/img/faces/7-image.jpg' }}
-      />
+    <View style={styles.fundo}>
+      <Text style={styles.titulo}>AGIS</Text>
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Senha"
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Login" onPress={handleLogin} />
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
-    
-    <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
-        <Text style={styles.loginCadastro}>Não possuo uma conta</Text>
+      <TouchableOpacity style={styles.botao} onPress={handleLogin}>
+        <Text style={styles.textoBotao}>Entrar</Text>
       </TouchableOpacity>
-      </View>
+      {error ? <Text>{error}</Text> : null}
+
+      <TouchableOpacity style={styles.botao2} onPress={() => navigation.navigate('Cadastro')}>
+        <Text style={styles.textoBotao2} >Não possuo uma conta</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-  },
-  input: {
-    width: 200,
-    height: 40,
-    borderWidth: 1,
-    marginBottom: 20,
-    padding: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
-  },
-  loginCadastro: {
-    marginTop: 10,
-    color: 'blue',
-  },
-});
 
 export default Login;

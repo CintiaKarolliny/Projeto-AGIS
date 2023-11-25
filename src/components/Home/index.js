@@ -1,33 +1,50 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { styles } from './styles';
 
 export default function Home() {
+  const navigation = useNavigation();
 
-const navigation = useNavigation();
+  return (
+    <ScrollView>
+      <View>
+        <Text style={styles.titulo}>
+          Seja bem vindo ao Aplicativo de Gestão para Instituições de ensino Superior
+        </Text>
 
- return (
-   <View>
-     <Text>Seja bem vindo ao</Text>
-     <Text>Sistema de Gerenciamento Escolar</Text>
+        <Text style={styles.objetivo}>
+          O aplicativo foi projetado para simplificar a administração acadêmica,
+          oferecendo funcionalidades para gerenciar seus alunos com facilidade:
+        </Text>
 
-     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.link}>Entrar na minha conta</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
-        <Text style={styles.link}>Cadastrar-me</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('menu', { screen: 'Sobre' })}>
-        <Text style={styles.link}>sobre aqui</Text>
-      </TouchableOpacity>
+        <Text style={styles.subtitulo}>1.Adicionar aluno:</Text>
+        <Text style={styles.texto}>
+          Insira novos alunos à base de dados do sistema. Nosso processo
+          simplificado garante que a entrada de informações seja rápida e
+          precisa.
+        </Text>
 
-   </View>
+        <Text style={styles.subtitulo}>2.Remover aluno:</Text>
+        <Text style={styles.texto}>
+          Contenha a estrutura de alunos quando necessário, mantendo sua lista
+          de estudantes atualizada com um processo intuitivo que economiza seu
+          tempo valioso.
+        </Text>
+
+        <Text style={styles.subtitulo}>3.Listar alunos:</Text>
+        <Text style={styles.texto}>
+          Obtenha uma visão abrangente de todos os alunos matriculados. O
+          sistema oferece uma lista completa e atualizada, permitindo que você
+          acesse informações cruciais com apenas um olhar.
+        </Text>
+      </View>{' '}
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({  
-  link: {
-    marginTop: 10,
-    color: 'blue',
-  }
-});
