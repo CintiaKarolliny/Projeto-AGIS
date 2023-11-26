@@ -41,7 +41,7 @@ const Cadastro = () => {
 
   return (
     <View style={styles.fundo}>
-      <Text style={styles.titulo}>SIGA</Text>
+      <Text style={styles.titulo}>AGIS</Text>
       <TextInput
         style={styles.input}
         placeholder="E-mail"
